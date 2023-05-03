@@ -1,0 +1,35 @@
+@page "{id:int}"
+@model ProjetoGerenciamentoRestaurante.RazorPages.Pages.Atendimento.Edit
+
+<link rel="stylesheet" href="~/lib/css/estilo.css"/>
+
+<div class="home">
+<h1>Alterar Dados do Atendimento</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" asp-for="AtendimentoModel.AtendimentoId"/>
+            <div class="form-group">
+                @if(TempData["Mensagem"] != null)
+                {
+                <div class="alert alert-success">@TempData["Mensagem"]</div>
+                }
+            <label asp-for="AtendimentoModel.MesaId">Numero da Mesa</label></br>
+            <select asp-for="AtendimentoModel.MesaId" class="form-select">
+                <option value="">Selecione o número da Mesa</option>
+                @foreach (var mesaModel in Model.MesaList)
+                {
+                    <option value="@mesaModel.MesaId">@mesaModel.Numero</option>
+                }
+            </select>
+            </div>
+            <br/>
+            <div class="botao">
+                <input type="submit" class="btn btn-primary" value="Salvar"/>
+                <a asp-page="/Atendimento/Index" class="btn btn-secondary"> Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

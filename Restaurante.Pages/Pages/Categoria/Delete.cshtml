@@ -1,0 +1,20 @@
+@page "{id:int}"
+@model ProjetoGerenciamentoRestaurante.RazorPages.Pages.Categoria.Delete
+
+<link rel="stylesheet" href="~/lib/css/estilo.css"/>
+
+<div class="home">
+<div align="center">
+    <h1>Deseja realmente remover?</h1>
+
+    <p><strong>Nome:</strong> @Model.CategoriaModel.Nome </p>
+    <p><strong>Descrição:</strong> @Model.CategoriaModel.Descricao </p>
+<form method="post">
+    <div class="botao">
+        <input type="submit" value="Sim" class="btn btn-danger"/>
+        <a asp-page="/Categoria/Index" class="btn btn-primary"> Voltar</a>
+    </div>
+</form>
+</div>
+</div>
+

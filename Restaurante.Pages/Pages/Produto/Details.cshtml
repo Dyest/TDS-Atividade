@@ -1,0 +1,18 @@
+@page "{id:int}"
+@model ProjetoGerenciamentoRestaurante.RazorPages.Pages.Produto.Details
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<link rel="stylesheet" href="~/lib/css/estilo.css"/>
+
+<div class="home">
+<h1>Detalhes do Produto:</h1>
+<h2> @Model.ProdutoModel.Nome</h2>
+
+<div class="info">
+    <p><strong>Categoria: </strong> @Model.ProdutoModel.Categoria!.Nome </p>
+    <p><strong>Descrição: </strong> @Model.ProdutoModel.Descricao </p>
+    <p><strong>Valor Unitário: R$</strong> @Model.ProdutoModel.Preco </p>
+</div>
+
+<p style="text-align:center"><a class="btn btn-primary" role="button" asp-page="Index"> <strong>Voltar</strong></a></p>
+</div>

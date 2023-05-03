@@ -1,0 +1,43 @@
+@page
+@model ProjetoGerenciamentoRestaurante.RazorPages.Pages.Mesa.Index
+
+<link rel="stylesheet" href="~/lib/css/estilo.css"/>
+
+<div class="home">
+<h1>Mesas Cadastradas</h1>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="info">
+    <div align="center">
+    </div>
+    <table class="table table-bordered table-sm table-hover-custom">
+        <thead>
+            <tr>
+                <th scope="col"> ID </th>
+                <th scope="col">Número</th>
+                <th scope="col">Ocupada</th>
+                <th scope="col">Libera as</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mesaModel in Model.MesaList)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => mesaModel.MesaId)</td>
+                    <td>@Html.DisplayFor(model => mesaModel.Numero)</td>
+                    <td>@Html.DisplayFor(model => mesaModel.Status)</td>
+                    <td>@Html.DisplayFor(model => mesaModel.HoraAbertura)</td>
+                    <td>
+                        <a class="btn btn-sm btn-secondary active" asp-page="./Edit" asp-route-id="@mesaModel.MesaId"> <i class="fa fa-pencil"></i> </a>
+                        <a class="btn btn-sm btn-success active" asp-page="./Details" asp-route-id="@mesaModel.MesaId"> <i class="fa fa-eye"></i></a>
+                        <a class="btn btn-secondary btn-sm btn-danger" asp-page="./Delete" asp-route-id="@mesaModel.MesaId"> <i class="fa fa-trash"></i> </a>
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+<p style="text-align:center"><a class="btn btn-primary" role="button" asp-page="./Create"> <strong>Cadastrar</strong></a></p>
+</div>
+</div>

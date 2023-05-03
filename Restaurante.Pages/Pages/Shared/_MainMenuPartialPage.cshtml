@@ -1,0 +1,27 @@
+
+<style>
+    .nav-link {
+        justify-items: center;
+        align-items: center;
+        padding-top: 30px
+        
+    }
+    nav{
+        padding-bottom: 20px;
+    }
+</style>
+
+<nav class="navbar navbar-expand bg-black navbar-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <a href= "/Index">
+                <img src="~/images/logo.jfif" width="95" height="80">
+            </a>
+            <li class="nav-item"><a class="nav-link"asp-page="/Garcon/Index" class="nav-link" aria-current="page">Garçom</a></li>
+            <li class="nav-item"><a class="nav-link"asp-page="/Categoria/Index" class="nav-link" aria-current="page">Categoria</a></li>
+            <li class="nav-item"><a class="nav-link"asp-page="/Produto/Index" class="nav-link aria-current="page"">Produtos</a></li>
+            <li class="nav-item"><a class="nav-link"asp-page="/Mesa/Index" class="nav-link" aria-current="page">Mesas</a></li>
+            <li class="nav-item"><a class="nav-link"asp-page="/Atendimento/Index" class="nav-link" aria-current="page">Atendimento</a></li>
+        </ul> 
+    </div>
+</nav>

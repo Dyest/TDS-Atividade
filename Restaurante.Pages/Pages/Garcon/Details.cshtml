@@ -1,0 +1,17 @@
+@page "{id:int}"
+@model ProjetoGerenciamentoRestaurante.RazorPages.Pages.Garcon.Details
+
+<link rel="stylesheet" href="~/lib/css/estilo.css"/>
+
+<div class="home">
+<h1>Detalhes do Garçom: @Model.GarconModel.Nome</h1>
+
+<div class="info">
+    <p><strong>Nome: </strong> @Model.GarconModel.Nome </p>
+    <p><strong>Sobrenome: </strong> @Model.GarconModel.Sobrenome </p>
+    <p><strong>CPF: </strong> @Model.GarconModel.Cpf </p>
+    <p><strong>Telefone: </strong> @Model.GarconModel.Telefone </p>
+</div>
+
+<p style="text-align:center"><a class="btn btn-primary" role="button" asp-page="Index"> <strong>Voltar</strong></a></p>
+</div>

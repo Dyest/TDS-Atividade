@@ -1,0 +1,29 @@
+@page
+@model ProjetoGerenciamentoRestaurante.RazorPages.Pages.Mesa.Create
+
+<link rel="stylesheet" href="~/lib/css/estilo.css"/>
+
+<div class="home">
+<h1>Cadastrar nova Mesa</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-dange"></div>
+            <input type="hidden" asp-for="MesaModel.MesaId"/>
+            <div class="form-group">
+                <label asp-for="MesaModel.Numero">Número</label>
+                <input asp-for="MesaModel.Numero" value="" class="form-control"/>
+                <span asp-validation-for="MesaModel.Numero" class="text-dange"></span>
+            </div>
+            <br/>
+        
+            <br/>
+            <div class="botao">
+                <input type="submit" class="btn btn-primary" value="Salvar"/>
+                <a asp-page="/Mesa/Index" class="btn btn-secondary"> Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

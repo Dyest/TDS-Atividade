@@ -1,0 +1,78 @@
+@page
+@model ProjetoGerenciamentoRestaurante.RazorPages.Pages.Garcon.Create
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<link rel="stylesheet" href="~/lib/css/estilo.css"/>
+
+<div class="home">
+<h1>Cadastrar Dados do Garçom</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-dange"></div>
+            <input type="hidden" asp-for="GarconModel.GarconId"/>
+            <div class="form-group">
+                <label asp-for="GarconModel.Nome"></label>
+                <input asp-for="GarconModel.Nome" class="form-control"/>
+                <span asp-validation-for="GarconModel.Nome" class="text-dange"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="GarconModel.Sobrenome"></label>
+                <input asp-for="GarconModel.Sobrenome" class="form-control"></textarea>
+                <span asp-validation-for="GarconModel.Sobrenome" class="text-dange"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label>CPF</label>
+                <input asp-for="GarconModel.Cpf" maxlength="14" class="form-control" onkeyup="handleCPF(event)"/>
+                <span asp-validation-for="GarconModel.Cpf" class="text-dange"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="GarconModel.Telefone"></label>
+                <input asp-for="GarconModel.Telefone" class="form-control" maxlength="15" onkeyup="handlePhone(event)"/>
+                <span asp-validation-for="GarconModel.Telefone" class="text-dange"></span>
+            </div>
+            <br/>
+            <div class="botao">
+                <input type="submit" class="btn btn-primary" value="Salvar"/>
+                <a asp-page="/Garcon/Index" class="btn btn-secondary"> Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+@section Scripts
+{
+<script>
+    const handlePhone = (event) => {
+        let input = event.target
+        input.value = phoneMask(input.value)
+    }
+
+    const phoneMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g, '')
+        value = value.replace(/(\d{2})(\d)/, "($1) $2")
+        value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+        return value
+    }
+
+    const handleCPF = (event) => {
+        let input = event.target
+        input.value = cpfMask(input.value)
+    }
+
+    const cpfMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g, '')
+        value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+        return value
+    }
+
+
+</script>
+}
