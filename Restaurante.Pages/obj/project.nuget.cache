@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aq0qTZ4FMeWbm4MSPGNF+IGHO52bhEe96u2kdj7nzYLlFijDMerm4roee2Jcz1DjKh2+2v7szRhwaeXFf0kLnQ==",
+  "dgSpecHash": "gv3l45wBE9Ytejq9XLMTBlLtPsT4q1qy/XduT8vxz24NQ3m6EEf2g43HN0RBsXGqIEub2kmHNtHZ1JkgbN+mig==",
   "success": true,
-  "projectFilePath": "C:\\ProjetosFlutter\\Restaurante\\Restaurante.Pages\\Restaurante.Pages.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\carol\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

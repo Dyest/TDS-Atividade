@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ProjetoGerenciamentoRestaurante.RazorPages.Data;
-using ProjetoGerenciamentoRestaurante.RazorPages.Models;
+using Restaurante.API.Data;
+using Restaurante.Pages.Models;
 
-namespace ProjetoGerenciamentoRestaurante.RazorPages.Pages.Mesa
+namespace Restaurante.RazorPages.Pages.Mesa
 {
     public class Index : PageModel
     {
 
         public List<MesaModel> MesaList { get; set; } = new();
-        public Index(AppDbContext context){
-            _context = context;
+        public Index(){
+            //_context = context;//
         }
 
         public async Task<IActionResult> OnGetAsync(){

@@ -1,0 +1,8 @@
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.csproj.AssemblyReference.cache
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.GeneratedMSBuildEditorConfig.editorconfig
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.AssemblyInfoInputs.cache
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.AssemblyInfo.cs
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.csproj.CoreCompileInputs.cache
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.MvcApplicationPartsAssemblyInfo.cache
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.RazorAssemblyInfo.cache
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.RazorAssemblyInfo.cs

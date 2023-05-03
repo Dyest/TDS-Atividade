@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProjetosFlutter\\Restaurante\\Restaurante.Pages\\Restaurante.Pages.csproj": {}
+    "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj": {}
   },
   "projects": {
-    "C:\\ProjetosFlutter\\Restaurante\\Restaurante.Pages\\Restaurante.Pages.csproj": {
+    "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProjetosFlutter\\Restaurante\\Restaurante.Pages\\Restaurante.Pages.csproj",
+        "projectUniqueName": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
         "projectName": "Restaurante.Pages",
-        "projectPath": "C:\\ProjetosFlutter\\Restaurante\\Restaurante.Pages\\Restaurante.Pages.csproj",
-        "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-        "outputPath": "C:\\ProjetosFlutter\\Restaurante\\Restaurante.Pages\\obj\\",
+        "projectPath": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
+        "packagesPath": "C:\\Users\\carol\\.nuget\\packages\\",
+        "outputPath": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\carol\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

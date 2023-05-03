@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProjetoGerenciamentoRestaurante.RazorPages.Data;
-using ProjetoGerenciamentoRestaurante.RazorPages.Models;
+using Restaurante.API.Data;
+using Restaurante.Pages.Models;
 
-namespace ProjetoGerenciamentoRestaurante.RazorPages.Pages
+namespace Restaurante.Pages.Pages
 {
     public class Index : PageModel
     {
@@ -14,8 +14,8 @@ namespace ProjetoGerenciamentoRestaurante.RazorPages.Pages
         public List<PedidoView>PedidoViewList { get; set; } = new();
         public List<Pedido_ProdutoModel>PedidoProdutoList { get; set; }
         
-        public Index(AppDbContext context){
-            _context = context;
+        public Index(){
+            //_context = context;//
         }
         public PedidoModel pedidoModel { get; set; } = new();
        

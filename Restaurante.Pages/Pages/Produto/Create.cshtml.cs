@@ -1,10 +1,11 @@
-using ProjetoGerenciamentoRestaurante.RazorPages.Data;
-using ProjetoGerenciamentoRestaurante.RazorPages.Models;
+using Restaurante.API.Data;
+using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
-namespace ProjetoGerenciamentoRestaurante.RazorPages.Pages.Produto
+namespace Restaurante.Pages.Pages.Produto
 {
     public class Create : PageModel
     {
@@ -13,24 +14,34 @@ namespace ProjetoGerenciamentoRestaurante.RazorPages.Pages.Produto
         public List<CategoriaModel> CategoriaList { get; set; } = new();
 
         public Create(AppDbContext context){
-            _context = context;
         }
 
         public async Task<IActionResult> OnGetAsync(){
-            var categoria = CategoriaList.FirstOrDefault(c => c.CategoriaId == 1);
-            CategoriaList = await _context.Categoria!.ToListAsync();
+            var httpClientCategoria = new HttpClient();
+            var urlCategoria = "http://localhost:5085/Categoria";
+            var requestMessageCategoria = new HttpRequestMessage(HttpMethod.Get, urlCategoria);
+            var responseCategoria = await httpClientCategoria.SendAsync(requestMessageCategoria);
+            var contentCategoria = await responseCategoria.Content.ReadAsStringAsync();
+
+            CategoriaList = JsonConvert.DeserializeObject<List<CategoriaModel>>(contentCategoria)!;
+
             return Page();
         }
-
+        
         public async Task<IActionResult> OnPostAsync(int id){
             if(!ModelState.IsValid){
                 return Page();
             }
-            try{
-                _context.Add(ProdutoModel);
-                await _context.SaveChangesAsync();
+            
+            var httpClient = new HttpClient();
+            var url = "http://localhost:5085/Produto/Create";
+            var produtoJson = JsonConvert.SerializeObject(ProdutoModel);
+            var content = new StringContent(produtoJson, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(url, content);
+            
+            if(response.IsSuccessStatusCode){
                 return RedirectToPage("/Produto/Index");
-            } catch(DbUpdateException){
+            } else {
                 return Page();
             }
         }
