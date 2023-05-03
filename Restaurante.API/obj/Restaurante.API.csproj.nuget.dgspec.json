@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProjetosFlutter\\Restaurante\\Restaurante.API\\Restaurante.API.csproj": {}
+    "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.API\\Restaurante.API.csproj": {}
   },
   "projects": {
-    "C:\\ProjetosFlutter\\Restaurante\\Restaurante.API\\Restaurante.API.csproj": {
+    "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.API\\Restaurante.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProjetosFlutter\\Restaurante\\Restaurante.API\\Restaurante.API.csproj",
+        "projectUniqueName": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.API\\Restaurante.API.csproj",
         "projectName": "Restaurante.API",
-        "projectPath": "C:\\ProjetosFlutter\\Restaurante\\Restaurante.API\\Restaurante.API.csproj",
-        "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-        "outputPath": "C:\\ProjetosFlutter\\Restaurante\\Restaurante.API\\obj\\",
+        "projectPath": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.API\\Restaurante.API.csproj",
+        "packagesPath": "C:\\Users\\carol\\.nuget\\packages\\",
+        "outputPath": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\carol\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,16 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.5, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

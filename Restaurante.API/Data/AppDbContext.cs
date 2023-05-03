@@ -1,5 +1,6 @@
-using Restaurante.API.Models;
 using Microsoft.EntityFrameworkCore;
+using Restaurante.API.Models;
+
 
 namespace Restaurante.API.Data{
     public class AppDbContext : DbContext
