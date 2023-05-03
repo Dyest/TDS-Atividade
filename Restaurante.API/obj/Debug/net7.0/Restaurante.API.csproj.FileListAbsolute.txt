@@ -1,0 +1,7 @@
+C:\ProjetosFlutter\Restaurante\Restaurante.API\obj\Debug\net7.0\Restaurante.API.csproj.AssemblyReference.cache
+C:\ProjetosFlutter\Restaurante\Restaurante.API\obj\Debug\net7.0\Restaurante.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\ProjetosFlutter\Restaurante\Restaurante.API\obj\Debug\net7.0\Restaurante.API.AssemblyInfoInputs.cache
+C:\ProjetosFlutter\Restaurante\Restaurante.API\obj\Debug\net7.0\Restaurante.API.AssemblyInfo.cs
+C:\ProjetosFlutter\Restaurante\Restaurante.API\obj\Debug\net7.0\Restaurante.API.csproj.CoreCompileInputs.cache
+C:\ProjetosFlutter\Restaurante\Restaurante.API\obj\Debug\net7.0\Restaurante.API.MvcApplicationPartsAssemblyInfo.cs
+C:\ProjetosFlutter\Restaurante\Restaurante.API\obj\Debug\net7.0\Restaurante.API.MvcApplicationPartsAssemblyInfo.cache
