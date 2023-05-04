@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Restaurante.API.Data;
 using Restaurante.API.Models;
 
 namespace Restaurante.API.Controllers
@@ -10,7 +11,7 @@ namespace Restaurante.API.Controllers
     {
         [HttpGet]
         [Route("/Categoria")]
-        public IActionResult Get([FromServices] AppDbContext context) => Ok (context.Categoria!.ToList());
+        public IActionResult Get([FromServices] AppDbContext context) => Ok(context.Categoria!.ToList());
         
         [HttpGet("/Categoria/Details/{id:int}")]
         public IActionResult GetById([FromRoute] int id, [FromServices] AppDbContext context)
