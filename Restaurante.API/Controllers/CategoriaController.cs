@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Restaurante.API.Data;
 using Restaurante.API.Models;
 
 namespace Restaurante.API.Controllers
