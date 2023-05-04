@@ -1,8 +1,7 @@
-using Restaurante.API.Data;
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Restaurante.Pages.Pages.Categoria
 {
@@ -18,20 +17,17 @@ namespace Restaurante.Pages.Pages.Categoria
             if(id == null || _context.Categoria == null){
                 return NotFound();
             }
-
-            var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Categoria/Details/{id}";
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-            var response = await httpClient.SendAsync(requestMessage);
-
-            if(!response.IsSuccessStatusCode){
-                return NotFound();
-            }
-
-            var content = await response.Content.ReadAsStringAsync();
-            CateoriaModel = JsonConvert.DeserializeObject<CategoriaModel>(content)!;
+ var httpClient = new HttpClient();
+            var url = "http://localhost:5085/Categoria/Create";
+            var categoriaJson = JsonConvert.SerializeObject(CategoriaModel);
+            var content = new StringContent(categoriaJson, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(url, content);
             
-            return Page();
+            if(response.IsSuccessStatusCode){
+                return RedirectToPage("/Categoria/Index");
+            } else {
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPostAsync(int id){

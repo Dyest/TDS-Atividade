@@ -1,36 +1,30 @@
-using Restaurante.API.Data;
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-namespace ProjetoGerenciamentoRestaurante.RazorPages.Pages.Mesa
+
+namespace Restaurante.Pages.Pages.Mesa
 {
     public class Create : PageModel
     {
         [BindProperty]
 
             public MesaModel MesaModel { get; set; } = new();
-            public Create(AppDbContext context){
-                _context = context;
-        }
+            public Create(){
+            }
         public async Task<IActionResult> OnPostAsync(int id){
             if(!ModelState.IsValid){
                 return Page();
             }
 
-            if (MesaModel != null) _context.Mesa!.Add(MesaModel);
-
-            if(MesaModel!.Status is false){MesaModel.HoraAbertura = null;}
-
-            try{
-                if(MesaModel.Status && MesaModel.HoraAbertura is null){
-                    ModelState.AddModelError(string.Empty, "Insira uma data e hora para a abertura da mesa.");
-                    return Page();
-                }
-                else{
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Mesa/Index");}
-            } catch(DbUpdateException){
+            var httpClient = new HttpClient();
+            var url = "http://localhost:5085/Mesa/Create";
+            var mesaJson = JsonConvert.SerializeObject(MesaModel);
+            var content = new StringContent(mesaJson, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(url, content);
+            
+            if(response.IsSuccessStatusCode){
+                return RedirectToPage("/Mesa/Index");
+            } else {
                 return Page();
             }
         }

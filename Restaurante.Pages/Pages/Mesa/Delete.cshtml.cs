@@ -1,8 +1,7 @@
-using Restaurante.API.Data;
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Restaurante.Pages.Pages.Mesa
 {
@@ -11,35 +10,45 @@ namespace Restaurante.Pages.Pages.Mesa
         [BindProperty]
 
             public MesaModel MesaModel { get; set; } = new();
-            public Delete(AppDbContext context){
-                _context = context;
-        }
+            public Delete(){
+            }
 
         public async Task<IActionResult> OnGetAsync(int? id){
             if(id == null || _context.Mesa == null){
                 return NotFound();
             }
 
-            var mesaModel = await _context.Mesa.FirstOrDefaultAsync(e => e.MesaId == id);
-            if(mesaModel == null){
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5085/Mesa/Details/{id}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+            var response = await httpClient.SendAsync(requestMessage);
+
+            if(!response.IsSuccessStatusCode){
                 return NotFound();
             }
-            MesaModel = mesaModel;
+
+            var content = await response.Content.ReadAsStringAsync();
+            MesaModel = JsonConvert.DeserializeObject<MesaModel>(content)!;
+            
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int id){
-            var mesaToDelete = await _context.Mesa!.FindAsync(id);
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5085/Mesa/Delete/{id}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Delete, url);
+            var response = await httpClient.SendAsync(requestMessage);
 
-            if(mesaToDelete == null){
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToPage("/Mesa/Index");
+            }
+            else if (response.StatusCode == HttpStatusCode.NotFound)
+            {
                 return NotFound();
             }
-
-            try{
-                _context.Mesa.Remove(mesaToDelete);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Mesa/Index");
-            } catch(DbUpdateException){
+            else
+            {
                 return Page();
             }
         }

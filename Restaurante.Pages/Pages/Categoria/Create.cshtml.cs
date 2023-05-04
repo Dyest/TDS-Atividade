@@ -1,8 +1,7 @@
-using Restaurante.API.Data;
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Restaurante.Pages.Pages.Categoria
 {
@@ -29,7 +28,6 @@ namespace Restaurante.Pages.Pages.Categoria
             } else {
                 return Page();
             }
-          
         }
     }
 }

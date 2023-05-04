@@ -1,8 +1,7 @@
-using Restaurante.API.Data;
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Restaurante.RazorPages.Pages.Mesa
 {
@@ -10,8 +9,7 @@ namespace Restaurante.RazorPages.Pages.Mesa
     {
         public MesaModel MesaModel { get; set; } = new();
 
-        public Details(AppDbContext context){
-            _context = context;
+        public Details(){
         }
 
         public async Task<IActionResult> OnGetAsync(int? id){
@@ -19,11 +17,18 @@ namespace Restaurante.RazorPages.Pages.Mesa
                 return NotFound();
             }
 
-            var mesaModel = await _context.Mesa.FirstOrDefaultAsync(e => e.MesaId == id);
-            if(mesaModel == null){
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5085/Mesa/Details/{id}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+            var response = await httpClient.SendAsync(requestMessage);
+
+            if(!response.IsSuccessStatusCode){
                 return NotFound();
             }
-            MesaModel = mesaModel;
+
+            var content = await response.Content.ReadAsStringAsync();
+            MesaModel = JsonConvert.DeserializeObject<MesaModel>(content)!;
+            
             return Page();
         }
     }
