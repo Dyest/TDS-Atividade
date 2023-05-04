@@ -9,8 +9,7 @@ namespace Restaurante.Pages.Pages.Categoria
     {
         public CategoriaModel CategoriaModel { get; set; } = new();
 
-        public Details(AppDbContext context){
-            _context = context;
+        public Details(){ 
         }
 
         public async Task<IActionResult> OnGetAsync(int? id){
@@ -18,11 +17,18 @@ namespace Restaurante.Pages.Pages.Categoria
                 return NotFound();
             }
 
-            var categoriaModel = await _context.Categoria.FirstOrDefaultAsync(e => e.CategoriaId == id);
-            if(categoriaModel == null){
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5085/Categoria/Details/{id}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+            var response = await httpClient.SendAsync(requestMessage);
+
+            if(!response.IsSuccessStatusCode){
                 return NotFound();
             }
-            CategoriaModel = categoriaModel;
+
+            var content = await response.Content.ReadAsStringAsync();
+            CategoriaModel = JsonConvert.DeserializeObject<CategoriaModel>(content)!;
+            
             return Page();
         }
     }

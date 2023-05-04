@@ -11,20 +11,27 @@ namespace Restaurante.Pages.Pages.Categoria
         [BindProperty]
 
             public CategoriaModel CategoriaModel { get; set; } = new();
-            public Edit(AppDbContext context){
-                _context = context;
-        }
+            public Edit(){
+            }
 
         public async Task<IActionResult> OnGetAsync(int? id){
             if(id == null || _context.Categoria == null){
                 return NotFound();
             }
 
-            var categoriaModel = await _context.Categoria.FirstOrDefaultAsync(e => e.CategoriaId == id);
-            if(categoriaModel == null){
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5171/Categoria/Details/{id}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+            var response = await httpClient.SendAsync(requestMessage);
+
+            if (!response.IsSuccessStatusCode)
+            {
                 return NotFound();
             }
-            CategoriaModel = categoriaModel;
+
+            var content = await response.Content.ReadAsStringAsync();
+            CategoriaModel = JsonConvert.DeserializeObject<CategoriaModel>(content)!;
+
             return Page();
         }
 
@@ -33,23 +40,19 @@ namespace Restaurante.Pages.Pages.Categoria
                 return Page();
             }
 
-            var categoriaToUpdate = await _context.Categoria!.FindAsync(id);
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5085/Categoria/Edit/{id}";
+            var categoriaJson = Newtonsoft.Json.JsonConvert.SerializeObject(CategoriaModel);
 
-            if(categoriaToUpdate == null){
-                return NotFound();
-            }
+            var requestMessage = new HttpRequestMessage(HttpMethod.Put, url);
+            requestMessage.Content = new StringContent(categoriaJson, Encoding.UTF8, "application/json");
+            var response = await httpClient.SendAsync(requestMessage);
 
-            categoriaToUpdate.Nome = CategoriaModel.Nome;
-            categoriaToUpdate.Descricao = CategoriaModel.Descricao;
-
-            try{
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Categoria/Index");
-            } catch(DbUpdateException){
+            if(!response.IsSuccessStatusCode){
                 return Page();
             }
-            
-            
+
+            return RedirectToPage("/Categoria/Index");
         }
     }
 }
