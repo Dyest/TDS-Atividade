@@ -1,31 +1,35 @@
+using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Restaurante.API.Data;
-using Restaurante.Pages.Models;
+
+using Newtonsoft.Json;
 
 namespace Restaurante.Pages.Pages.Garcon
 {
     public class Create : PageModel
     {
         [BindProperty]
-        public GarconModel GarconModel { get; set; } = new();
+        public GarconModel GarconModel { get; set; } = new(); 
+
         public Create(AppDbContext context){
-            _context = context;
         }
-        
+
         public async Task<IActionResult> OnPostAsync(int id){
             if(!ModelState.IsValid){
                 return Page();
             }
-            try{
-                _context.Add(GarconModel);
-                await _context.SaveChangesAsync();
+            
+            var httpClient = new HttpClient();
+            var url = "http://localhost:5085/Garcon/Create";
+            var garconJson = JsonConvert.SerializeObject(GarconModel);
+            var content = new StringContent(garconJson, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(url, content);
+            
+            if(response.IsSuccessStatusCode){
                 return RedirectToPage("/Garcon/Index");
-            } catch(DbUpdateException){
+            } else {
                 return Page();
             }
-            
         }
     }
 }
