@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Restaurante.API.Data;
 using Restaurante.Pages.Models;
 using Newtonsoft.Json;
 
