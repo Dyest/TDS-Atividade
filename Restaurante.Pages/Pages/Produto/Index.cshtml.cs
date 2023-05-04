@@ -5,7 +5,7 @@ using Restaurante.API.Data;
 using Restaurante.Pages.Models;
 using Newtonsoft.Json;
 
-namespace ProjetoGerenciamentoRestaurante.RazorPages.Pages.Produto
+namespace Restaurante.Pages.Pages.Produto
 {
     public class Index : PageModel
     {
