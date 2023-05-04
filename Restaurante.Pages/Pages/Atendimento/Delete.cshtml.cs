@@ -2,16 +2,13 @@ using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-
 namespace Restaurante.Pages.Pages.Atendimento
 {
     public class Delete : PageModel
     {
         public AtendimentoModel AtendimentoModel { get; set; } = new();
         public Pedido_ProdutoModel Pedido_ProdutoModel { get; set; } = new();
-        
         public Delete(AppDbContext context){
-            _context = context;
         }
 
         public async Task<IActionResult> OnGetAsync(int? id){

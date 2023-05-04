@@ -10,12 +10,18 @@ namespace Restaurante.Pages.Pages.Atendimento
         [BindProperty]
         public AtendimentoModel AtendimentoModel { get; set; } = new();
         public List<MesaModel> MesaList { get; set; } = new();
-        public Create(AppDbContext context){
-            _context = context;
+        public Create(){
         }
 
         public async Task<IActionResult> OnGetAsync(){
-            MesaList = await _context.Mesa!.ToListAsync();
+            var httpClientMesa = new HttpClient();
+            var urlMesa = "http://localhost:5085/Mesa";
+            var requestMessageMesa = new HttpRequestMessage(HttpMethod.Get, urlMesa);
+            var responseMesa = await httpClientCategoria.SendAsync(requestMessageMesa);
+            var contentMesa = await responseCategoria.Content.ReadAsStringAsync();
+
+            MesaList = JsonConvert.DeserializeObject<List<MesaModel>>(contentMesa)!;
+
             return Page();
         }
 
@@ -23,27 +29,18 @@ namespace Restaurante.Pages.Pages.Atendimento
             if(!ModelState.IsValid){
                 return Page();
             }
-
-            try{
-                bool mesaOcupada = await _context.Mesa!.AnyAsync(m => m.MesaId == AtendimentoModel.MesaId && m.Status);
-                if (mesaOcupada) {
-                    // ModelState.AddModelError(string.Empty, "A mesa já está ocupada!");
-                    TempData["Mensagem"] = "A mesa já está ocupada!!";
-                    return RedirectToPage("/Atendimento/Create");
-                }
-                AtendimentoModel.DataCriacao = DateTime.Now;
-
-                var mesaToUpdate = await _context.Mesa!.FindAsync(AtendimentoModel.MesaId);
-                mesaToUpdate!.Status = true;
-                mesaToUpdate.HoraAbertura = DateTime.Now.AddHours(2);
-                 
-                _context.Add(AtendimentoModel);
-                await _context.SaveChangesAsync();
+            
+            var httpClient = new HttpClient();
+            var url = "http://localhost:5085/Atendimento/Create";
+            var atendimentoJson = JsonConvert.SerializeObject(AtendimentoModel);
+            var content = new StringContent(atendimentoJson, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(url, content);
+            
+            if(response.IsSuccessStatusCode){
                 return RedirectToPage("/Atendimento/Index");
-            } catch(DbUpdateException){
+            } else {
                 return Page();
             }
-            
         }
     }
 }

@@ -9,13 +9,16 @@ namespace Restaurante.Pages.Pages.Atendimento
 
         public List<AtendimentoModel> AtendimentoList { get; set; } = new();
         public Index(){
-           // _context = context;//
         }
 
         public async Task<IActionResult> OnGetAsync(){
-            AtendimentoList = await _context.Atendimento!
-            .Include(p => p.Mesa)
-            .ToListAsync();
+            var httpClient = new HttpClient();
+            var url = "http://localhost:5085/Atendimento";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+            var response = await httpClient.SendAsync(requestMessage);
+            var content = await response.Content.ReadAsStringAsync();
+
+            AtendimentoList = JsonConvert.DeserializeObject<List<AtendimentoModel>>(content)!;
             
             return Page();
         }

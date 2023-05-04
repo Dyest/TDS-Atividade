@@ -11,33 +11,38 @@ namespace Restaurante.Pages.Pages.Atendimento
         public AtendimentoModel AtendimentoModel { get; set; } = new();
         public MesaModel MesaModel { get; set; } = new();
         public List<MesaModel> MesaList { get; set; } = new();
-        public Edit(AppDbContext context){
-            _context = context;
+        public Edit(){
         }
 
         public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null || _context.Atendimento == null){
+            if (id == null)
+            {
                 return NotFound();
             }
 
-            var atendimentoModel = await _context.Atendimento
-            .Include(p => p.Mesa)
-            .FirstOrDefaultAsync(e => e.AtendimentoId == id);
+            var httpClientAtendimento = new HttpClient();
+            var urlAtendimento = $"http://localhost:5085/Atendimento/Details/{id}";
+            var responseAtendimento = await httpClientAtendimento.GetAsync(urlAtendimento);
 
-            if(atendimentoModel == null){
+            if (!responseAtendimento.IsSuccessStatusCode)
+            {
                 return NotFound();
             }
-            AtendimentoModel = atendimentoModel;
+            var contentAtendimento = await responseAtendimento.Content.ReadAsStringAsync();
+            AtendimentoModel = JsonConvert.DeserializeObject<AtendimentoModel>(contentAtendimento)!;
+            
+            var httpClientMesa = new HttpClient();
+            var urlMesa = "http://localhost:5085/Mesa";
+            var requestMessageMesa = new HttpRequestMessage(HttpMethod.Get, urlMesa);
+            var responseMesa = await httpClientMesa.SendAsync(requestMessageMesa);
+            var contentMesa = await responseMesa.Content.ReadAsStringAsync();
 
-            var mesa = MesaList.FirstOrDefault(c => c.MesaId == AtendimentoModel.MesaId);
-            
-            MesaList = await _context.Mesa!.ToListAsync();
-            
+            MesaList = JsonConvert.DeserializeObject<List<MesaModel>>(contentMesa)!;
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id){
+        /*public async Task<IActionResult> OnPostAsync(int id){
             if(!ModelState.IsValid){
                 return Page();
             }
@@ -75,6 +80,6 @@ namespace Restaurante.Pages.Pages.Atendimento
             } catch(DbUpdateException){
                 return Page();
             }
-        }
+        }*/
     }
 }
