@@ -3,68 +3,54 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Text;
+using System.Net;
+
 
 namespace Restaurante.Pages.Pages.Atendimento
 {
-    public class Delete : PageModel
+  public class Delete : PageModel
     {
+        [BindProperty]
         public AtendimentoModel AtendimentoModel { get; set; } = new();
-        public Pedido_ProdutoModel Pedido_ProdutoModel { get; set; } = new();
         public Delete(){
         }
 
         public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null || _context.Atendimento == null){
-                return NotFound();
-            }
-            var atendimentoModel = await _context.Atendimento
-            .Include(p => p.Mesa)
-            .FirstOrDefaultAsync(e => e.AtendimentoId == id);
-
-            if(atendimentoModel == null){
+            if(id == null){
                 return NotFound();
             }
 
-            var pedido_ProdutoModel = await _context.Pedido_Produto!
-            .Include(p => p.Pedido)
-                .ThenInclude(p => p!.Garcon)
-            .Include(p => p.Pedido)
-                .ThenInclude(p => p!.Atendimento)
-                    .ThenInclude(a => a!.Mesa)
-            .Include(p => p.Produto)
-            .Where(e => e.Pedido!.Atendimento!.AtendimentoId == id)
-            .FirstOrDefaultAsync();
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5085/Atendimento/Details/{id}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+            var response = await httpClient.SendAsync(requestMessage);
 
-            if(pedido_ProdutoModel != null){
-                TempData["Mensagem"] = "Esse Atendimento tem Pedidos!!";
-                return RedirectToPage("/Atendimento/Index");
+            if(!response.IsSuccessStatusCode){
+                return NotFound();
             }
 
-            AtendimentoModel = atendimentoModel;
-            Pedido_ProdutoModel = pedido_ProdutoModel!;
+            var content = await response.Content.ReadAsStringAsync();
+            AtendimentoModel = JsonConvert.DeserializeObject<AtendimentoModel>(content)!;
             
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int id){
-            var atendimentoToDelete = await _context.Atendimento!.FindAsync(id);
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5085/Atendimento/Delete/{id}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Delete, url);
+            var response = await httpClient.SendAsync(requestMessage);
 
-            if(atendimentoToDelete == null){
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToPage("/Atendimento/Index");
+            }
+            else if (response.StatusCode == HttpStatusCode.NotFound)
+            {
                 return NotFound();
             }
-
-            var mesaAntigaId = atendimentoToDelete.MesaId;
-
-            try{
-                var mesaAntiga = await _context.Mesa!.FindAsync(mesaAntigaId);
-                mesaAntiga!.Status = false;
-                mesaAntiga.HoraAbertura = null;
-                
-                _context.Update(mesaAntiga);
-                _context.Atendimento.Remove(atendimentoToDelete);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Atendimento/Index");
-            } catch(DbUpdateException){
+            else
+            {
                 return Page();
             }
         }

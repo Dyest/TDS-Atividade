@@ -14,7 +14,7 @@ namespace Restaurante.Pages.Pages.Mesa
         }
 
         public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null || _context.Mesa == null){
+            if(id == null){
                 return NotFound();
             }
 

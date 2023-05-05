@@ -7,20 +7,22 @@ using System.Text;
 namespace Restaurante.Pages.Pages.Mesa
 {
     public class Edit : PageModel
-    {
+    {   
         [BindProperty]
+        public MesaModel MesaModel { get; set; } = new();
 
-            public MesaModel MesaModel { get; set; } = new();
-            public Edit(){
-            }
+        public Edit(){
+        }
 
-        public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null || _context.Mesa == null){
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
                 return NotFound();
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5171/Mesa/Details/{id}";
+            var url = $"http://localhost:5085/Mesa/Details/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 
@@ -32,20 +34,23 @@ namespace Restaurante.Pages.Pages.Mesa
             var content = await response.Content.ReadAsStringAsync();
             MesaModel = JsonConvert.DeserializeObject<MesaModel>(content)!;
 
+
             return Page();
         }
+
 
         public async Task<IActionResult> OnPostAsync(int id){
             if(!ModelState.IsValid){
                 return Page();
             }
-            
+
             var httpClient = new HttpClient();
             var url = $"http://localhost:5085/Mesa/Edit/{id}";
             var mesaJson = Newtonsoft.Json.JsonConvert.SerializeObject(MesaModel);
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Put, url);
             requestMessage.Content = new StringContent(mesaJson, Encoding.UTF8, "application/json");
+
             var response = await httpClient.SendAsync(requestMessage);
 
             if(!response.IsSuccessStatusCode){

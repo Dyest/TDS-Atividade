@@ -8,21 +8,20 @@ using System.Net;
 
 namespace Restaurante.Pages.Pages.Mesa
 {
-    public class Delete : PageModel
+  public class Delete : PageModel
     {
         [BindProperty]
-
-            public MesaModel MesaModel { get; set; } = new();
-            public Delete(){
-            }
+        public MesaModel MesaModel { get; set; } = new();
+        public Delete(){
+        }
 
         public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null || _context.Mesa == null){
+            if(id == null){
                 return NotFound();
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Mesa/Details/{id}";
+            var url = $"http://localhost:5085/Mesa/Delete/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 

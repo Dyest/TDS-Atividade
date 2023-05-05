@@ -7,29 +7,31 @@ using System.Net;
 
 namespace Restaurante.Pages.Pages.Categoria
 {
-    public class Delete : PageModel
+  public class Delete : PageModel
     {
         [BindProperty]
-
-            public CategoriaModel CategoriaModel { get; set; } = new();
-            public Delete(){
-            }
+        public CategoriaModel CategoriaModel { get; set; } = new();
+        public Delete(){
+        }
 
         public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null || _context.Categoria == null){
+            if(id == null){
                 return NotFound();
             }
- var httpClient = new HttpClient();
-            var url = "http://localhost:5085/Categoria/Create";
-            var categoriaJson = JsonConvert.SerializeObject(CategoriaModel);
-            var content = new StringContent(categoriaJson, Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync(url, content);
-            
-            if(response.IsSuccessStatusCode){
-                return RedirectToPage("/Categoria/Index");
-            } else {
-                return Page();
+
+            var httpClient = new HttpClient();
+            var url = $"http://localhost:5085/Categoria/Delete/{id}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
+            var response = await httpClient.SendAsync(requestMessage);
+
+            if(!response.IsSuccessStatusCode){
+                return NotFound();
             }
+
+            var content = await response.Content.ReadAsStringAsync();
+            CategoriaModel = JsonConvert.DeserializeObject<CategoriaModel>(content)!;
+            
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int id){

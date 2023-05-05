@@ -9,7 +9,6 @@ namespace Restaurante.Pages.Pages.Pedido
     public class Create : PageModel
     {
         public AtendimentoModel AtendimentoModel { get; set; } = new();
-        [BindProperty]
         public PedidoModel PedidoModel { get; set; } = new();
 
         [BindProperty]
@@ -22,46 +21,43 @@ namespace Restaurante.Pages.Pages.Pedido
             
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null || _context.Atendimento == null){
-                return NotFound();
-            }
-
-            var atendimentoModel = await _context.Atendimento
-            .FirstOrDefaultAsync(e => e.AtendimentoId == id);
-
-            if(atendimentoModel == null){
-                return NotFound();
-            }
-
-            AtendimentoModel = atendimentoModel;
-
-            Pedido_ProdutoList = await _context.Pedido_Produto!.ToListAsync();
-            GarconList = await _context.Garcon!.ToListAsync();
-            ProdutoList = await _context.Produto!.ToListAsync();
-            
-            return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(int? id){
+       public async Task<IActionResult> OnPostAsync(int? id){
             if(!ModelState.IsValid){
-                return RedirectToAction("/Pedido/Create/"+id);
+                return Page();
             }
 
-            try{
-                _context.Pedido!.Add(PedidoModel);
+            var httpClient = new HttpClient();
+            var url = "http://localhost:5085/Pedido/Create";
+            var pedidoJson = JsonConvert.SerializeObject(PedidoModel);
+            var content = new StringContent(pedidoJson, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(url, content);
+            
 
-                await _context.SaveChangesAsync();
-
-                Pedido_ProdutoModel.PedidoId = PedidoModel.PedidoId;
-                _context.Pedido_Produto!.Add(Pedido_ProdutoModel);
-
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Atendimento/Index");
-                
-            } catch(DbUpdateException){
-                return RedirectToAction("/Pedido/Create/"+id);
+            if(response.IsSuccessStatusCode){
+                return RedirectToPage("/Pedido/Index");
+            } else {
+                return Page();
             }
+       }
+
+            public async Task<IActionResult> OnGetAsync(int? id){
+            var httpClientGarcon = new HttpClient();
+            var urlGarcon = "http://localhost:5085/Garcon";
+            var requestMessageGarcon = new HttpRequestMessage(HttpMethod.Get, urlGarcon);
+            var responseGarcon = await httpClientGarcon.SendAsync(requestMessageGarcon);
+            var contentGarcon = await responseGarcon.Content.ReadAsStringAsync();
+
+            GarconList = JsonConvert.DeserializeObject<List<GarconModel>>(contentGarcon)!;
+
+            var httpClientPedido_Produto = new HttpClient();
+            var urlPedido_Produto = "http://localhost:5085/Pedido_Produto";
+            var requestMessagePedido_Produto  = new HttpRequestMessage(HttpMethod.Get, urlPedido_Produto);
+            var responsePedido_Produto = await httpClientPedido_Produto.SendAsync(requestMessagePedido_Produto);
+            var contentPedido_Produto = await responsePedido_Produto.Content.ReadAsStringAsync();
+
+            Pedido_ProdutoList = JsonConvert.DeserializeObject<List<Pedido_ProdutoModel>>(contentPedido_Produto)!;
+
+            return Page();
         }
     }
 }

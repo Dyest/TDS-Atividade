@@ -10,11 +10,11 @@ namespace Restaurante.Pages.Pages.Categoria
     {
         public CategoriaModel CategoriaModel { get; set; } = new();
 
-        public Details(){ 
+        public Details(){
         }
 
         public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null || _context.Categoria == null){
+            if(id == null){
                 return NotFound();
             }
 
