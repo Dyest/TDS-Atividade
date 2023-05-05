@@ -66,3 +66,7 @@ tbody tr td:last-child{
 tbody tr td:not(:nth-child(4)){
     text-align: center;
 }
+
+.img-rest {
+    padding-top: 30px;
+}
