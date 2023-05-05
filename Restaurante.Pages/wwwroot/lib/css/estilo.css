@@ -1,0 +1,68 @@
+.row{
+    display: flex;
+}
+           
+h1{
+    text-align: center;
+    font-size: 35px;
+}
+
+.home{
+    background-color: lightgray;
+    text-align: center;
+    flex: 1 1;
+    padding: 30px 30px 30px 30px;
+}
+
+.form{
+    text-align: center;
+}
+
+form{
+    width: 500px;
+    align-items: center;
+}
+
+.form-control{
+    text-align: left;      
+}
+
+.form-group{
+    text-align: left;
+}
+
+.botao{
+    text-align: center;
+}
+
+select{
+    width: 500px;
+    text-align: left;
+}
+
+.info{
+    width: 900px;
+    background-color: rgb(173, 171, 171);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 30px;
+}
+
+main{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: lightgray;
+    padding-bottom: 96px;
+}
+
+
+tbody tr td:last-child{
+    width: 10vw;
+}
+
+tbody tr td:not(:nth-child(4)){
+    text-align: center;
+}
