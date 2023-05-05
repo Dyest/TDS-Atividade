@@ -1,7 +1,8 @@
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using Newtonsoft.Json;
+using System.Net;
 
 namespace Restaurante.Pages.Pages.Categoria
 {
@@ -16,7 +17,7 @@ namespace Restaurante.Pages.Pages.Categoria
             if(!ModelState.IsValid){
                 return Page();
             }
-          
+            
             var httpClient = new HttpClient();
             var url = "http://localhost:5085/Categoria/Create";
             var categoriaJson = JsonConvert.SerializeObject(CategoriaModel);

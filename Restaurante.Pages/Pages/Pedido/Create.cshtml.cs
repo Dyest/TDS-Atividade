@@ -1,6 +1,8 @@
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace Restaurante.Pages.Pages.Pedido
 {
@@ -16,8 +18,8 @@ namespace Restaurante.Pages.Pages.Pedido
         public List<ProdutoModel> ProdutoList { get; set; } = new();
         public List<Pedido_ProdutoModel> Pedido_ProdutoList { get; set; } = new();
         
-        public Create(AppDbContext context){
-            _context = context;
+        public Create(){
+            
         }
 
         public async Task<IActionResult> OnGetAsync(int? id){

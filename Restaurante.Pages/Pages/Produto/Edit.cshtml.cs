@@ -2,6 +2,7 @@ using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace Restaurante.Pages.Pages.Produto
 {

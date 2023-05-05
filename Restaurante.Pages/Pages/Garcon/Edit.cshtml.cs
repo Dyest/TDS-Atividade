@@ -2,6 +2,7 @@ using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace Restaurante.Pages.Pages.Garcon
 {
@@ -9,7 +10,7 @@ namespace Restaurante.Pages.Pages.Garcon
     {   
         [BindProperty]
         public GarconModel GarconModel { get; set; } = new();
-
+    
         public Edit(){
         }
 
@@ -21,7 +22,7 @@ namespace Restaurante.Pages.Pages.Garcon
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5171/Garcon/Details/{id}";
+            var url = $"http://localhost:5085/Garcon/Details/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 
@@ -55,7 +56,7 @@ namespace Restaurante.Pages.Pages.Garcon
                 return Page();
             }
 
-            return RedirectToPage("/Garcon/Index");
+            return RedirectToPage("/Produto/Index");
         }
     }
 }

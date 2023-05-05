@@ -1,9 +1,10 @@
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
+using System.Net;
 
-
-namespace Restaurante.RazorPages.Pages.Mesa
+namespace Restaurante.Pages.Pages.Mesa
 {
     public class Details : PageModel
     {

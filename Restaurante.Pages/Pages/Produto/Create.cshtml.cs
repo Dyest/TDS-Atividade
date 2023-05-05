@@ -2,6 +2,7 @@ using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace Restaurante.Pages.Pages.Produto
 {
@@ -11,7 +12,7 @@ namespace Restaurante.Pages.Pages.Produto
         public ProdutoModel ProdutoModel { get; set; } = new();
         public List<CategoriaModel> CategoriaList { get; set; } = new();
 
-        public Create(AppDbContext context){
+        public Create(){
         }
 
         public async Task<IActionResult> OnGetAsync(){

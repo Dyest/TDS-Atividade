@@ -1,8 +1,8 @@
 using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
 using Newtonsoft.Json;
+using System.Net;
 
 namespace Restaurante.Pages.Pages.Garcon
 {
@@ -11,7 +11,7 @@ namespace Restaurante.Pages.Pages.Garcon
         [BindProperty]
         public GarconModel GarconModel { get; set; } = new(); 
 
-        public Create(AppDbContext context){
+        public Create(){
         }
 
         public async Task<IActionResult> OnPostAsync(int id){
