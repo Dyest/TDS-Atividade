@@ -20,7 +20,7 @@ namespace Restaurante.API.Controllers
 
             return Ok(pedidoProdutos);
         }
-/*
+
         [HttpGet("/Pedido_Produto/Details/{id:int}")]
         public IActionResult GetById([FromRoute] int id, [FromServices] AppDbContext context)
         {
@@ -64,8 +64,11 @@ namespace Restaurante.API.Controllers
                 }
             });
         }
+    }
+}
 
-        [HttpPost("/Pedido_Produto/Create")]
+
+       /* [HttpPost("/Pedido_Produto/Create")]
         public IActionResult Post([FromBody] Pedido_ProdutoModel pedido_ProdutoModel,
             [FromServices] AppDbContext context)
         {
@@ -98,7 +101,7 @@ namespace Restaurante.API.Controllers
         public IActionResult Delete([FromRoute] int id, 
             [FromServices] AppDbContext context)
         {
-            var model = context.Pedido_Produto!.FirstOrDefault(x => x.Pedido_ProdutoId == id);
+            var model = context.Pedido_Produto!.FirstOrDefault(x => x.PedidoProdutoId == id);
             if (model == null) {
                 return NotFound();
             }
@@ -106,6 +109,6 @@ namespace Restaurante.API.Controllers
             context.Pedido_Produto!.Remove(model);
             context.SaveChanges();
             return Ok(model);
-        }*/
+        }
     }
-}
+}*/
