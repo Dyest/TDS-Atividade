@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using Restaurante.Pages.Models;
-using System.Net;
+using System.Text;
 
 namespace Restaurante.Pages.Pages
 {

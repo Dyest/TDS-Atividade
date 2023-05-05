@@ -2,7 +2,7 @@ using Restaurante.Pages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using System.Net;
+using System.Text;
 
 namespace Restaurante.Pages.Pages.Atendimento
 {
@@ -18,8 +18,8 @@ namespace Restaurante.Pages.Pages.Atendimento
             var httpClientMesa = new HttpClient();
             var urlMesa = "http://localhost:5085/Mesa";
             var requestMessageMesa = new HttpRequestMessage(HttpMethod.Get, urlMesa);
-            var responseMesa = await httpClientCategoria.SendAsync(requestMessageMesa);
-            var contentMesa = await responseCategoria.Content.ReadAsStringAsync();
+            var responseMesa = await httpClientMesa.SendAsync(requestMessageMesa);
+            var contentMesa = await responseMesa.Content.ReadAsStringAsync();
 
             MesaList = JsonConvert.DeserializeObject<List<MesaModel>>(contentMesa)!;
 
