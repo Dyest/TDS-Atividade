@@ -28,3 +28,4 @@ D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restau
 D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\refint\Restaurante.Pages.dll
 D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\Restaurante.Pages.genruntimeconfig.cache
 D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\obj\Debug\net7.0\ref\Restaurante.Pages.dll
+D:\Faculdade\Restaurante\TDS-Atividade\Restaurante.Pages\bin\Debug\net7.0\Restaurante.Pages.staticwebassets.runtime.json
