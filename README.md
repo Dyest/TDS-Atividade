@@ -14,10 +14,10 @@ Associações: Um garçon pode atender várias mesas, registrando os produtos pe
 Projeto implementado na Gamificação 1 agora fazendo uso de dois projetos: 1 para a camada de apresentação, por meio do RAZOR PAGES e outro com REST API
 
 ## Tecnologias utilizadas;
-ASP.NET
-Entity Framework
-HTML
-CSS
+ASP.NET,
+Entity Framework,
+HTML,
+CSS.
 
 ## Utilização;
 Abra dois terminais diferentes, um para a .API e outro para o .Pages e utilize o comando "dotnet watch run" para ambos.
