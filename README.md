@@ -17,7 +17,8 @@ Projeto implementado na Gamificação 1 agora fazendo uso de dois projetos: 1 pa
 ASP.NET,
 Entity Framework,
 HTML,
-CSS.
+CSS, 
+RazorPages.
 
 ## Utilização;
 Abra dois terminais diferentes, um para a .API e outro para o .Pages e utilize o comando "dotnet watch run" para ambos.
