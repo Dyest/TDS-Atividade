@@ -56,7 +56,7 @@ namespace Restaurante.Pages.Pages.Garcon
                 return Page();
             }
 
-            return RedirectToPage("/Produto/Index");
+            return RedirectToPage("/Garcon/Index");
         }
     }
 }

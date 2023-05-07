@@ -31,12 +31,14 @@ namespace Restaurante.Pages.Pages.Atendimento
                 return Page();
             }
             
+            AtendimentoModel.DataCriacao = DateTime.Now;
             var httpClient = new HttpClient();
             var url = "http://localhost:5085/Atendimento/Create";
             var atendimentoJson = JsonConvert.SerializeObject(AtendimentoModel);
             var content = new StringContent(atendimentoJson, Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(url, content);
             
+
             if(response.IsSuccessStatusCode){
                 return RedirectToPage("/Atendimento/Index");
             } else {
