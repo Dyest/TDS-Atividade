@@ -30,6 +30,7 @@ namespace Restaurante.API.Controllers
             {
                 AtendimentoId = atendimentoModel.AtendimentoId,
                 AtendimentoFechado = atendimentoModel.AtendimentoFechado,
+                DataCriacao = atendimentoModel.DataCriacao,
                 DataSaida = atendimentoModel.DataSaida,
                 MesaId = atendimentoModel.MesaId,
                 Mesa = new
