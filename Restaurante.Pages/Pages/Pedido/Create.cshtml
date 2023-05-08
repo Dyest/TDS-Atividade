@@ -27,13 +27,13 @@
             </select>
 
             <label asp-for="PedidoModel.HorarioPedido">Hora do Pedido</label>
-            <input asp-for="PedidoModel.HorarioPedido" class="form-control" value=null />
+            <input asp-for="PedidoModel.HorarioPedido" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" asp-format="{0:yyyy-MM-ddTHH:mm:ss}" />
             <span asp-validation-for="PedidoModel.HorarioPedido" class="text-danger"></span>
 
             <div class="row">
                 <div class="col col-md-9">
                     <label>Qual o produto?</label></br>
-                    <select class="form-control" asp-for="Pedido_ProdutoModel.ProdutoId">
+                    <select class="form-control" asp-for="PedidoProdutoModel.ProdutoId">
                         <option value="">Selecione</option>
                         @foreach (var produtoModel in Model.ProdutoList)
                         {
@@ -42,9 +42,9 @@
                     </select>
                 </div>
                 <div class="col col-md-3">
-                    <label asp-for="Pedido_ProdutoModel.Quantidade"></label>
-                    <input asp-for="Pedido_ProdutoModel.Quantidade" type="number" value="1" class="form-control"/>
-                    <span asp-validation-for="Pedido_ProdutoModel.Quantidade" class="text-dange"></span>
+                    <label asp-for="PedidoProdutoModel.Quantidade"></label>
+                    <input asp-for="PedidoProdutoModel.Quantidade" type="number" value="1" class="form-control"/>
+                    <span asp-validation-for="PedidoProdutoModel.Quantidade" class="text-dange"></span>
                 </div>
             </div>
 

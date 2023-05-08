@@ -11,7 +11,7 @@ namespace Restaurante.Pages.Pages.Atendimento
     {
         [BindProperty]
         public AtendimentoModel AtendimentoModel { get; set; } = new();
-        public List<Pedido_ProdutoModel> Pedido_ProdutoList { get; set; } = new();
+        public List<PedidoProdutoModel> PedidoProdutoList { get; set; } = new();
         public MesaModel MesaModel { get; set; } = new();
         public Details(){
         }
@@ -43,8 +43,8 @@ namespace Restaurante.Pages.Pages.Atendimento
             }
 
             var contentPedido = await responsePedido.Content.ReadAsStringAsync();
-            var pedido_ProdutoList = JsonConvert.DeserializeObject<List<Pedido_ProdutoModel>>(contentPedido);
-            Pedido_ProdutoList = pedido_ProdutoList!;
+            var pedidoProdutoList = JsonConvert.DeserializeObject<List<PedidoProdutoModel>>(contentPedido);
+            PedidoProdutoList = pedidoProdutoList!;
 
             return Page();
         }
@@ -61,23 +61,16 @@ namespace Restaurante.Pages.Pages.Atendimento
             var requestMessage = new HttpRequestMessage(HttpMethod.Put, url);
             requestMessage.Content = new StringContent(mesaJson, Encoding.UTF8, "application/json");
             var response = await httpClient.SendAsync(requestMessage);
-
-            if(!response.IsSuccessStatusCode){
-                return RedirectToPage("/Mesa/Index");
-            }
-            var httpClientAtendimento = new HttpClient();
-            var urlAtendimento = $"http://localhost:5085/Atendimento/Edit/{id}";
-            var atendimentoJson = JsonConvert.SerializeObject(AtendimentoModel);
-
-            var requestMessageAtendimento = new HttpRequestMessage(HttpMethod.Put, url);
-            requestMessageAtendimento.Content = new StringContent(atendimentoJson, Encoding.UTF8, "application/json");
-            var responseAtendimento = await httpClient.SendAsync(requestMessageAtendimento);
-
-            if(!response.IsSuccessStatusCode){
-                return RedirectToPage("/Atendimento/Index");
-            }
             
-            return Page();
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToPage("/Atendimento/Details", id);
+            } 
+            else 
+            {
+                TempData["Aviso_Abrir_Atendimento"] = "A mesa que você esta tentando abrir o atendimento já está ocupada!!";
+                return Page();
+            }
         }
 
     }

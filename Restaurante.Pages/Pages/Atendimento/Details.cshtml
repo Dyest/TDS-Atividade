@@ -9,7 +9,7 @@
 
 <div class="info">
     <h3><strong>Mesa: </strong> @Model.AtendimentoModel.Mesa!.Numero</p></h3>
-    @if (Model.Pedido_ProdutoList.Any())
+    @if (Model.PedidoProdutoList.Any())
     {
         <table >
         <thead>
@@ -24,7 +24,7 @@
         </thead>
         <tbody>
             
-            @foreach (var item in Model.Pedido_ProdutoList)
+            @foreach (var item in Model.PedidoProdutoList)
             {
                 <tr>
                     <td>@item.Produto!.Nome</td>
@@ -39,7 +39,7 @@
         </table>
         <br>
         <span class="d-inline-block" data-toggle="popover" data-content="Disabled popover">
-        <button class="btn btn-lg btn-success" style="pointer-events: none;" type="button" >Total: R$@Model.Pedido_ProdutoList.Sum(item => item.Produto!.Preco * item.Quantidade).ToString("F2", CultureInfo.GetCultureInfo("pt-BR"))</button>
+        <button class="btn btn-lg btn-success" style="pointer-events: none;" type="button" >Total: R$@Model.PedidoProdutoList.Sum(item => item.Produto!.Preco * item.Quantidade).ToString("F2", CultureInfo.GetCultureInfo("pt-BR"))</button>
         </span>
         <br><br>
         }
