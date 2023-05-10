@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj": {}
+    "C:\\Users\\carol\\Desktop\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj": {}
   },
   "projects": {
-    "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj": {
+    "C:\\Users\\carol\\Desktop\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
+        "projectUniqueName": "C:\\Users\\carol\\Desktop\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
         "projectName": "Restaurante.Pages",
-        "projectPath": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
+        "projectPath": "C:\\Users\\carol\\Desktop\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
         "packagesPath": "C:\\Users\\carol\\.nuget\\packages\\",
-        "outputPath": "D:\\Faculdade\\Restaurante\\TDS-Atividade\\Restaurante.Pages\\obj\\",
+        "outputPath": "C:\\Users\\carol\\Desktop\\TDS-Atividade\\Restaurante.Pages\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\carol\\AppData\\Roaming\\NuGet\\NuGet.Config",
