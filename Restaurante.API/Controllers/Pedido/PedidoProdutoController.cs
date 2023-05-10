@@ -7,14 +7,14 @@ namespace Restaurante.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PedidoProdutoController : ControllerBase
+    public class Pedido_ProdutoController : ControllerBase
     {
         [HttpGet]
         [Route("/PedidoProduto/{id:int}")]
         public IActionResult Get([FromRoute] int id, [FromServices] AppDbContext context){
             var pedidoProdutos = context.PedidoProduto!
-                .Include(p => p.Pedido).ThenInclude(p => p!.Garcon)
-                .Include(p => p.Pedido).ThenInclude(p => p!.Atendimento).ThenInclude(a => a!.Mesa)
+                .Include(p => p.Pedido).ThenInclude(p => p!.Garcon).Include(p => p.Pedido)
+                .ThenInclude(p => p!.Atendimento).ThenInclude(a => a!.Mesa)
                 .Include(p => p.Produto).Where(e => e.Pedido!.Atendimento!.AtendimentoId  == id)
             .ToList();
 
@@ -52,10 +52,19 @@ namespace Restaurante.API.Controllers
                 context.SaveChanges();
                 
                 return Ok(model);
-            }   
+            }
         }
 
-        [HttpPost("/Pedido_Produto/Create/{id:int}")]
+        [HttpPost("/Pedido/Create")]
+        public IActionResult Post([FromBody] PedidoModel pedidoModel,
+            [FromServices] AppDbContext context)
+        {
+            context.Pedido!.Add(pedidoModel);
+            context.SaveChanges();
+            return Created($"/{pedidoModel.PedidoId}", pedidoModel);
+        }
+
+        [HttpPost("/PedidoProduto/Create/{id:int}")]
         public IActionResult Post([FromRoute] int id, [FromBody] PedidoProdutoModel pedidoProdutoModel,
             [FromServices] AppDbContext context)
         {
