@@ -16,7 +16,6 @@ namespace Restaurante.Pages.Pages.Pedido
         public PedidoProdutoModel PedidoProdutoModel { get; set; } = new();
         public List<GarconModel> GarconList { get; set; } = new();
         public List<ProdutoModel> ProdutoList { get; set; } = new();
-        // public List<Pedido_ProdutoModel> Pedido_ProdutoList { get; set; } = new();
         
         public Create(){
         }
@@ -27,7 +26,6 @@ namespace Restaurante.Pages.Pages.Pedido
                 return NotFound();
             }
 
-            // Obter informações do atendimento
             var httpClientAtendimento = new HttpClient();
             var urlAtendimento = $"http://localhost:5085/Atendimento/Details/{id}";
             var responseAtendimento = await httpClientAtendimento.GetAsync(urlAtendimento);
@@ -91,21 +89,7 @@ namespace Restaurante.Pages.Pages.Pedido
             } else {
                 return Redirect("/Atendimento");
             }
-/*
-            try{
-                _context.Pedido!.Add(PedidoModel);
-
-                await _context.SaveChangesAsync();
-
-                Pedido_ProdutoModel.PedidoId = PedidoModel.PedidoId;
-                _context.Pedido_Produto!.Add(Pedido_ProdutoModel);
-
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Atendimento/Index");
-                
-            } catch(DbUpdateException){
-                return RedirectToAction("/Pedido/Create/"+id);
-            }*/
+            
         }
     }
 }

@@ -28,14 +28,13 @@ namespace Restaurante.Pages.Pages.Atendimento
 
         public async Task<IActionResult> OnPostAsync(int id){
             if(!ModelState.IsValid){
-                return Page();
+                return RedirectToPage("/Atendimento/Create");
             }
             
-            AtendimentoModel.DataCriacao = DateTime.Now;
             var httpClient = new HttpClient();
-            var url = "http://localhost:5085/Atendimento/Create";
             var atendimentoJson = JsonConvert.SerializeObject(AtendimentoModel);
             var content = new StringContent(atendimentoJson, Encoding.UTF8, "application/json");
+            var url = "http://localhost:5085/Atendimento/Create";
             var response = await httpClient.PostAsync(url, content);
             
 

@@ -2,8 +2,18 @@
 @model Restaurante.Pages.Pages.Atendimento.Delete
 
 <link rel="stylesheet" href="~/lib/css/estilo.css"/>
-
 <div class="home">
+    @if (Model.PedidoProdutoList.Any())
+    {
+        @if(TempData["Aviso_Excluir"] != null)
+        {
+        <div class="alert alert-danger">@TempData["Aviso_Excluir"]</div>
+        }
+        <div align="center">
+            <a asp-page="/Atendimento/Index" class="btn btn-primary"> Voltar</a>
+        </div>
+    }
+else{
 <div align="center">
     <h2>Deseja realmente remover esse atendimento?</h2>
 
@@ -17,4 +27,5 @@
     </div>
 </form>
 </div>
+}
 </div>

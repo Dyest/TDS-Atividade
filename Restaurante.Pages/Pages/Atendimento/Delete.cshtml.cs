@@ -12,6 +12,7 @@ namespace Restaurante.Pages.Pages.Atendimento
     {
         [BindProperty]
         public AtendimentoModel AtendimentoModel { get; set; } = new();
+        public List<PedidoProdutoModel> PedidoProdutoList { get; set; } = new();
         public Delete(){
         }
 
@@ -32,6 +33,25 @@ namespace Restaurante.Pages.Pages.Atendimento
             var content = await response.Content.ReadAsStringAsync();
             AtendimentoModel = JsonConvert.DeserializeObject<AtendimentoModel>(content)!;
             
+            var httpClientPedido = new HttpClient();
+            var urlPedido = $"http://localhost:5085/PedidoProduto/{id}";
+            var responsePedido = await httpClientPedido.GetAsync(urlPedido);
+
+            if (!responsePedido.IsSuccessStatusCode)
+            {
+                return NotFound();
+            }
+
+            var contentPedido = await responsePedido.Content.ReadAsStringAsync();
+            var pedidoProdutoList = JsonConvert.DeserializeObject<List<PedidoProdutoModel>>(contentPedido);
+
+            PedidoProdutoList = pedidoProdutoList!;
+
+            if(PedidoProdutoList is not null){
+                TempData["Aviso_Excluir"] = "Esse atendimento não pode ser excluido, ele tem pedidos cadastrados!!!";
+                return Page();
+            }
+
             return Page();
         }
 
