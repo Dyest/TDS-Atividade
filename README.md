@@ -11,7 +11,7 @@ Produto: representa os produtos disponíveis no restaurante. Contém atributos c
 Atendimento: representa o atendimento de uma mesa por um garçon em um determinado momento. Contém atributos como a mesa atendida, o garçon responsável o horário do pedido e os produtos solicitados.
 Associações: Um garçon pode atender várias mesas, registrando os produtos pedidos em cada atendimento. Uma mesa pode ser atendida por vários garçons.  Um produto pertence a uma categoria.
 
-Projeto implementado na Gamificação 1 agora fazendo uso de dois projetos: 1 para a camada de apresentação, por meio do RAZOR PAGES e outro com REST API
+Projeto implementado na Gamificação 2 agora fazendo uso de dois projetos: 1 para a camada de apresentação, por meio do RAZOR PAGES e outro com REST API
 
 ## Tecnologias utilizadas;
 ASP.NET,
