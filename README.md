@@ -1,6 +1,6 @@
 # TDS-Atividade
 
-Modelo de negócio: Sistema de Gerenciamento de Pedidos de Restaurante
+Modelo de negócio: Sistema de Gerenciamento de Pedidos de Restaurante utilizando Docker.
 
 Classes básicas:
 
