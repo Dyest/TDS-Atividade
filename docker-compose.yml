@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db_mysql:
+    container_name: db_mysql
+    build:
+      context: ./Restaurante.DB
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3306:3306
+  webapi:
+    container_name: webapi
+    build:
+      context: ./Restaurante.API
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 5085:80
+    depends_on:
+      - db_mysql
+  razorpages:
+    container_name: razorpages
+    build:
+      context: ./Restaurante.Pages
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 5293:80
+    depends_on:
+      - db_mysql
+      - webapi

@@ -16,7 +16,7 @@ namespace Restaurante.Pages.Pages.Atendimento
 
         public async Task<IActionResult> OnGetAsync(){
             var httpClientMesa = new HttpClient();
-            var urlMesa = "http://localhost:5085/Mesa";
+            var urlMesa = "http://webapi/Mesa";
             var requestMessageMesa = new HttpRequestMessage(HttpMethod.Get, urlMesa);
             var responseMesa = await httpClientMesa.SendAsync(requestMessageMesa);
             var contentMesa = await responseMesa.Content.ReadAsStringAsync();
@@ -34,7 +34,7 @@ namespace Restaurante.Pages.Pages.Atendimento
             var httpClient = new HttpClient();
             var atendimentoJson = JsonConvert.SerializeObject(AtendimentoModel);
             var content = new StringContent(atendimentoJson, Encoding.UTF8, "application/json");
-            var url = "http://localhost:5085/Atendimento/Create";
+            var url = "http://webapi/Atendimento/Create";
             var response = await httpClient.PostAsync(url, content);
             
 

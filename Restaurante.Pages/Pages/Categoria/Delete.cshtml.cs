@@ -20,7 +20,7 @@ namespace Restaurante.Pages.Pages.Categoria
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Categoria/Details/{id}";
+            var url = $"http://webapi/Categoria/Details/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 
@@ -36,7 +36,7 @@ namespace Restaurante.Pages.Pages.Categoria
 
         public async Task<IActionResult> OnPostAsync(int id){
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Categoria/Delete/{id}";
+            var url = $"http://webapi/Categoria/Delete/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Delete, url);
             var response = await httpClient.SendAsync(requestMessage);
 

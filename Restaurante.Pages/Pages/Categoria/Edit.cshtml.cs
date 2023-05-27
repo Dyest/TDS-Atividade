@@ -22,7 +22,7 @@ namespace Restaurante.Pages.Pages.Categoria
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Categoria/Details/{id}";
+            var url = $"http://webapi/Categoria/Details/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 
@@ -44,7 +44,7 @@ namespace Restaurante.Pages.Pages.Categoria
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Categoria/Edit/{id}";
+            var url = $"http://webapi/Categoria/Edit/{id}";
             var categoriaJson = Newtonsoft.Json.JsonConvert.SerializeObject(CategoriaModel);
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Put, url);

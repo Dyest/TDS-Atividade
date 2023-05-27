@@ -17,7 +17,7 @@ namespace Restaurante.Pages.Pages.Produto
 
         public async Task<IActionResult> OnGetAsync(){
             var httpClientCategoria = new HttpClient();
-            var urlCategoria = "http://localhost:5085/Categoria";
+            var urlCategoria = "http://webapi/Categoria";
             var requestMessageCategoria = new HttpRequestMessage(HttpMethod.Get, urlCategoria);
             var responseCategoria = await httpClientCategoria.SendAsync(requestMessageCategoria);
             var contentCategoria = await responseCategoria.Content.ReadAsStringAsync();
@@ -33,7 +33,7 @@ namespace Restaurante.Pages.Pages.Produto
             }
             
             var httpClient = new HttpClient();
-            var url = "http://localhost:5085/Produto/Create";
+            var url = "http://webapi/Produto/Create";
             var produtoJson = JsonConvert.SerializeObject(ProdutoModel);
             var content = new StringContent(produtoJson, Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(url, content);

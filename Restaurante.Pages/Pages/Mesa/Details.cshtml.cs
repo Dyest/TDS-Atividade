@@ -19,7 +19,7 @@ namespace Restaurante.Pages.Pages.Mesa
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Mesa/Details/{id}";
+            var url = $"http://webapi/Mesa/Details/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 

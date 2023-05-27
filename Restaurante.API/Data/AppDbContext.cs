@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Restaurante.API.Models;
-
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Restaurante.API.Data{
     public class AppDbContext : DbContext
@@ -13,8 +13,12 @@ namespace Restaurante.API.Data{
         public DbSet<PedidoModel>? Pedido {get; set;}
         public DbSet<PedidoProdutoModel>? PedidoProduto {get; set;}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("DataSource=restaurante_db.db;Cache=Shared");
+        static readonly string connectionString = "Server=db_mysql;Port=3306;Database=restaurante;Uid=root;Pwd=restaurante;";
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
+            optionsBuilder.UseMySql(connectionString,
+                                    ServerVersion.AutoDetect(connectionString));
+        }
+
             
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             modelBuilder.Entity<GarconModel>().ToTable("Garcon");

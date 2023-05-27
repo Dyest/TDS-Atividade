@@ -20,7 +20,7 @@ namespace Restaurante.Pages.Pages.Garcon
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Garcon/Details/{id}";
+            var url = $"http://webapi/Garcon/Details/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 
@@ -36,7 +36,7 @@ namespace Restaurante.Pages.Pages.Garcon
 
         public async Task<IActionResult> OnPostAsync(int id){
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Garcon/Delete/{id}";
+            var url = $"http://webapi/Garcon/Delete/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Delete, url);
             var response = await httpClient.SendAsync(requestMessage);
 

@@ -20,7 +20,7 @@ namespace Restaurante.Pages.Pages.Garcon
             }
             
             var httpClient = new HttpClient();
-            var url = "http://localhost:5085/Garcon/Create";
+            var url = "http://webapi/Garcon/Create";
             var garconJson = JsonConvert.SerializeObject(GarconModel);
             var content = new StringContent(garconJson, Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(url, content);

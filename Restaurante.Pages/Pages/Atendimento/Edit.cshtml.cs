@@ -23,7 +23,7 @@ namespace Restaurante.Pages.Pages.Atendimento
             }
 
             var httpClientAtendimento = new HttpClient();
-            var urlAtendimento = $"http://localhost:5085/Atendimento/Details/{id}";
+            var urlAtendimento = $"http://webapi/Atendimento/Details/{id}";
             var responseAtendimento = await httpClientAtendimento.GetAsync(urlAtendimento);
 
             if (!responseAtendimento.IsSuccessStatusCode)
@@ -34,7 +34,7 @@ namespace Restaurante.Pages.Pages.Atendimento
             AtendimentoModel = JsonConvert.DeserializeObject<AtendimentoModel>(contentAtendimento)!;
             
             var httpClientMesa = new HttpClient();
-            var urlMesa = "http://localhost:5085/Mesa";
+            var urlMesa = "http://webapi/Mesa";
             var requestMessageMesa = new HttpRequestMessage(HttpMethod.Get, urlMesa);
             var responseMesa = await httpClientMesa.SendAsync(requestMessageMesa);
             var contentMesa = await responseMesa.Content.ReadAsStringAsync();
@@ -50,7 +50,7 @@ namespace Restaurante.Pages.Pages.Atendimento
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Atendimento/Edit/{id}";
+            var url = $"http://webapi/Atendimento/Edit/{id}";
             var atendimentoJson = Newtonsoft.Json.JsonConvert.SerializeObject(AtendimentoModel);
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Put, url);

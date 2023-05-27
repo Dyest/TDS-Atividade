@@ -22,7 +22,7 @@ namespace Restaurante.Pages.Pages.Atendimento
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Atendimento/Details/{id}";
+            var url = $"http://webapi/Atendimento/Details/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 
@@ -34,7 +34,7 @@ namespace Restaurante.Pages.Pages.Atendimento
             AtendimentoModel = JsonConvert.DeserializeObject<AtendimentoModel>(content)!;
             
             var httpClientPedido = new HttpClient();
-            var urlPedido = $"http://localhost:5085/PedidoProduto/{id}";
+            var urlPedido = $"http://webapi/PedidoProduto/{id}";
             var responsePedido = await httpClientPedido.GetAsync(urlPedido);
 
             if (!responsePedido.IsSuccessStatusCode)
@@ -57,7 +57,7 @@ namespace Restaurante.Pages.Pages.Atendimento
 
         public async Task<IActionResult> OnPostAsync(int id){
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Atendimento/Delete/{id}";
+            var url = $"http://webapi/Atendimento/Delete/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Delete, url);
             var response = await httpClient.SendAsync(requestMessage);
 

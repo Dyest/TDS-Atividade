@@ -2923,19 +2923,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\carol\\.nuget\\packages\\": {}
+    "C:\\Users\\nocma\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\carol\\Desktop\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
+      "projectUniqueName": "E:\\Arquivos\\UTFPR\\Disciplinas\\Atuais\\TDS\\Ajuda\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
       "projectName": "Restaurante.Pages",
-      "projectPath": "C:\\Users\\carol\\Desktop\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
-      "packagesPath": "C:\\Users\\carol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\carol\\Desktop\\TDS-Atividade\\Restaurante.Pages\\obj\\",
+      "projectPath": "E:\\Arquivos\\UTFPR\\Disciplinas\\Atuais\\TDS\\Ajuda\\TDS-Atividade\\Restaurante.Pages\\Restaurante.Pages.csproj",
+      "packagesPath": "C:\\Users\\nocma\\.nuget\\packages\\",
+      "outputPath": "E:\\Arquivos\\UTFPR\\Disciplinas\\Atuais\\TDS\\Ajuda\\TDS-Atividade\\Restaurante.Pages\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\carol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nocma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2943,6 +2948,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2989,7 +2995,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

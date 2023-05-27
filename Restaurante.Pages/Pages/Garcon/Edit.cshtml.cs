@@ -22,7 +22,7 @@ namespace Restaurante.Pages.Pages.Garcon
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Garcon/Details/{id}";
+            var url = $"http://webapi/Garcon/Details/{id}";
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await httpClient.SendAsync(requestMessage);
 
@@ -44,7 +44,7 @@ namespace Restaurante.Pages.Pages.Garcon
             }
 
             var httpClient = new HttpClient();
-            var url = $"http://localhost:5085/Garcon/Edit/{id}";
+            var url = $"http://webapi/Garcon/Edit/{id}";
             var garconJson = Newtonsoft.Json.JsonConvert.SerializeObject(GarconModel);
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Put, url);

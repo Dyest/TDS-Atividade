@@ -27,7 +27,7 @@ namespace Restaurante.Pages.Pages.Pedido
             }
 
             var httpClientAtendimento = new HttpClient();
-            var urlAtendimento = $"http://localhost:5085/Atendimento/Details/{id}";
+            var urlAtendimento = $"http://webapi/Atendimento/Details/{id}";
             var responseAtendimento = await httpClientAtendimento.GetAsync(urlAtendimento);
 
             if (!responseAtendimento.IsSuccessStatusCode)
@@ -40,7 +40,7 @@ namespace Restaurante.Pages.Pages.Pedido
             // Pedido_ProdutoList = await _context.Pedido_Produto!.ToListAsync();
             
             var httpClientGarcon = new HttpClient();
-            var urlGarcon = "http://localhost:5085/Garcon";
+            var urlGarcon = "http://webapi/Garcon";
             var requestMessageGarcon = new HttpRequestMessage(HttpMethod.Get, urlGarcon);
             var responseGarcon = await httpClientGarcon.SendAsync(requestMessageGarcon);
             var contentGarcon = await responseGarcon.Content.ReadAsStringAsync();
@@ -48,7 +48,7 @@ namespace Restaurante.Pages.Pages.Pedido
             GarconList = JsonConvert.DeserializeObject<List<GarconModel>>(contentGarcon)!;
 
             var httpClientProduto = new HttpClient();
-            var urlProduto = "http://localhost:5085/Produto";
+            var urlProduto = "http://webapi/Produto";
             var requestMessageProduto = new HttpRequestMessage(HttpMethod.Get, urlProduto);
             var responseProduto = await httpClientProduto.SendAsync(requestMessageProduto);
             var contentProduto = await responseProduto.Content.ReadAsStringAsync();
@@ -64,7 +64,7 @@ namespace Restaurante.Pages.Pages.Pedido
             }
             
             var httpClientPedido = new HttpClient();
-            var urlPedido = "http://localhost:5085/Pedido/Create";
+            var urlPedido = "http://webapi/Pedido/Create";
             var produtoJsonPedido = JsonConvert.SerializeObject(PedidoModel);
             var contentPedido = new StringContent(produtoJsonPedido, Encoding.UTF8, "application/json");
             var responsePedido = await httpClientPedido.PostAsync(urlPedido, contentPedido);
@@ -75,7 +75,7 @@ namespace Restaurante.Pages.Pages.Pedido
                 int pedidoId = pedido.PedidoId;
 
                 var httpClientPedidoProduto = new HttpClient();
-                var urlPedidoProduto = $"http://localhost:5085/PedidoProduto/Create/{pedidoId}";
+                var urlPedidoProduto = $"http://webapi/PedidoProduto/Create/{pedidoId}";
                 var produtoJsonPedidoProduto = JsonConvert.SerializeObject(PedidoProdutoModel);
 
                 var contentPedidoProduto = new StringContent(produtoJsonPedidoProduto, Encoding.UTF8, "application/json");

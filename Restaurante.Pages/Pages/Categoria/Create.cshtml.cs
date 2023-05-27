@@ -19,7 +19,7 @@ namespace Restaurante.Pages.Pages.Categoria
             }
             
             var httpClient = new HttpClient();
-            var url = "http://localhost:5085/Categoria/Create";
+            var url = "http://webapi/Categoria/Create";
             var categoriaJson = JsonConvert.SerializeObject(CategoriaModel);
             var content = new StringContent(categoriaJson, Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(url, content);
