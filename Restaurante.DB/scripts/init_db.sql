@@ -50,9 +50,9 @@ CREATE TABLE Produto (
 	FOREIGN KEY (CategoriaId) REFERENCES Categoria (CategoriaId) ON DELETE CASCADE
 );
 
-INSERT INTO restaurante.Produto (`ProdutoId`,`Nome`,`Descricao`,`Preco`,`CategoriaId`) VALUES (1,'Heineken','Não há igual, a melhor.',1000,2);
-INSERT INTO restaurante.Produto (`ProdutoId`,`Nome`,`Descricao`,`Preco`,`CategoriaId`) VALUES (2,'Cupcake','Doce e com muito glacê.',800,3);
-INSERT INTO restaurante.Produto (`ProdutoId`,`Nome`,`Descricao`,`Preco`,`CategoriaId`) VALUES (3,'Pizza de Calabresa','Vem com muita calabresa e orégano.',15000,1);
+INSERT INTO restaurante.Produto (`ProdutoId`,`Nome`,`Descricao`,`Preco`,`CategoriaId`) VALUES (1,'Heineken','Sem igual, a melhor.',1000,2);
+INSERT INTO restaurante.Produto (`ProdutoId`,`Nome`,`Descricao`,`Preco`,`CategoriaId`) VALUES (2,'Cupcake','Doce e com muito chantilly.',800,3);
+INSERT INTO restaurante.Produto (`ProdutoId`,`Nome`,`Descricao`,`Preco`,`CategoriaId`) VALUES (3,'Pizza de Calabresa','Vem com muita calabresa.',15000,1);
 
 CREATE TABLE Atendimento (
 	AtendimentoId INT NOT NULL AUTO_INCREMENT,
