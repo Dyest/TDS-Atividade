@@ -21,4 +21,4 @@ CSS,
 RazorPages.
 
 ## Utilização;
-Abra dois terminais diferentes, um para a .API e outro para o .Pages e utilize o comando "dotnet watch run" para ambos.
+Acesse a pasta raiz onde está o arquivo "docker-compose-yml, dê o comando "docker-compose up --build -d" e acesse a aplicação pela URL "http://localhost:5293/"
